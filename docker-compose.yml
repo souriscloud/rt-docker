@@ -4,6 +4,7 @@ services:
   rt:
     build:
       context: .
+    image: valuo/request-tracker:latest
     restart: unless-stopped
     depends_on:
       - db
@@ -25,6 +26,7 @@ services:
   cron:
     build:
       context: .
+    image: valuo/request-tracker:latest
     restart: unless-stopped
     # the cron daemon needs to run as root
     user: root
