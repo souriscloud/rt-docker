@@ -9,10 +9,10 @@ services:
     depends_on:
       - db
     volumes:
-      - ./RT_SiteConfig.pm:/opt/rt5/etc/RT_SiteConfig.pm:ro
-      - ./msmtp/msmtp.conf:/etc/msmtprc:ro
-      - ./msmtp/:/msmtp:ro
-      - ./getmail/getmailrc:/getmail/getmailrc:ro
+      - ./RT_SiteConfig.pm:/opt/rt5/etc/RT_SiteConfig.pm:rw
+      - ./msmtp/msmtp.conf:/etc/msmtprc:rw
+      - ./msmtp/:/msmtp:rw
+      - ./getmail/getmailrc:/getmail/getmailrc:rw
       - ./gpg/:/opt/rt5/var/data/gpg
       - ./smime/:/opt/rt5/var/data/smime
       - ./shredder/:/opt/rt5/var/data/RT-Shredder
