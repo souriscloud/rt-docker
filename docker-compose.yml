@@ -76,7 +76,7 @@ services:
       POSTGRES_USER: rt
       POSTGRES_PASSWORD: password
     volumes:
-      - ./db_data:/var/lib/postgresql/data
+      - ./db_data/data:/var/lib/postgresql/data
     ports:
       - "12342:5432"
     networks:
