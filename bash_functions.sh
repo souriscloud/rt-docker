@@ -16,15 +16,15 @@ function check_files() {
     exit 1;
   fi
   
-  if [ ! -f ./nginx/certs/pub.pem ]; then
-    echo "./nginx/certs/pub.pem does not exist. Please see Readme.md if you want to create a self signed certificate."
-    exit 1
-  fi
+  # if [ ! -f ./nginx/certs/pub.pem ]; then
+  #   echo "./nginx/certs/pub.pem does not exist. Please see Readme.md if you want to create a self signed certificate."
+  #   exit 1
+  # fi
   
-  if [ ! -f ./nginx/certs/priv.pem ]; then
-    echo "./nginx/certs/priv.pem does not exist. Please see Readme.md if you want to create a self signed certificate."
-    exit 1
-  fi
+  # if [ ! -f ./nginx/certs/priv.pem ]; then
+  #   echo "./nginx/certs/priv.pem does not exist. Please see Readme.md if you want to create a self signed certificate."
+  #   exit 1
+  # fi
   
   if [ ! -f ./crontab ]; then
     echo "./crontab does not exist. Please see crontab.example for an example configuration."

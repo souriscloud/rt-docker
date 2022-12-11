@@ -21,3 +21,6 @@ getmail/*
 gpg/*
 !gpg/.keep
 shredder/*.sql
+db_data/*
+!db_data/.keep
+!valuo_rebuild.sh

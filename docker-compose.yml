@@ -4,11 +4,9 @@ services:
   rt:
     build:
       context: .
-    image: firefart/requesttracker:latest
-    restart: always
-    deploy:
-      mode: replicated
-      replicas: 5
+    restart: unless-stopped
+    depends_on:
+      - db
     volumes:
       - ./RT_SiteConfig.pm:/opt/rt5/etc/RT_SiteConfig.pm:ro
       - ./msmtp/msmtp.conf:/etc/msmtprc:ro
@@ -27,8 +25,7 @@ services:
   cron:
     build:
       context: .
-    image: firefart/requesttracker:latest
-    restart: always
+    restart: unless-stopped
     # the cron daemon needs to run as root
     user: root
     # this will run the busybox crond
@@ -37,6 +34,7 @@ services:
     entrypoint: ""
     depends_on:
       - rt
+      - db
       # we send rt-mailgate over to nginx
       - nginx
     volumes:
@@ -59,15 +57,28 @@ services:
   nginx:
     build:
       context: nginx
-    image: firefart/requesttracker:nginx-latest
     ports:
-      - "0.0.0.0:443:443"
+      - "12341:80"
     depends_on:
       - rt
+      - db
     volumes:
       - ./nginx/certs/:/certs/:ro
       - ./nginx/startup-scripts/:/docker-entrypoint.d/:ro
       - /etc/localtime:/etc/localtime:ro
+    networks:
+      - net
+  
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: rt
+      POSTGRES_USER: rt
+      POSTGRES_PASSWORD: $6I#2j7S%QZc
+    volumes:
+      - ./db_data:/var/lib/postgresql/data
+    ports:
+      - "12342:5432"
     networks:
       - net
 
