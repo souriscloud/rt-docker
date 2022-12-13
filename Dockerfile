@@ -100,8 +100,8 @@ RUN mkdir -p /var/log/supervisor/ \
   && chown rt:rt /var/run/supervisord
 
 # cron config and install busybox symlink for crond
-RUN mkdir -p /var/spool/cron/crontabs \
-  && ln -fs /bin/busybox /usr/sbin/crond
+# RUN mkdir -p /var/spool/cron/crontabs \
+#   && ln -fs /bin/busybox /usr/sbin/crond
 
 # msmtp config
 RUN mkdir /msmtp \
@@ -126,7 +126,8 @@ RUN mkdir -p /opt/rt5/var/data/RT-Shredder \
   && chown rt:rt /opt/rt5/var/data/RT-Shredder
 
 # add dev/maintainer tools
-RUN apt update && apt install -q -y vim nano
+RUN apt update && apt install -q -y vim nano cron
+COPY crontab /etc/cron.d/crontab
 
 # update PATH
 ENV PATH="${PATH}:/opt/rt5/sbin:/opt/rt5/bin"
