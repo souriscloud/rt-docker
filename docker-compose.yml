@@ -48,7 +48,7 @@ services:
       - ./gpg/:/opt/rt5/var/data/gpg
       - ./smime/:/opt/rt5/var/data/smime
       # - ./crontab:/var/spool/cron/crontabs/rt:rw
-      - ./crontab:/etc/cron.d/crontab:rw
+      - ./crontab:/etc/cron.d/rt:rw
       - ./cron/:/cron:rw
       - ./shredder/:/opt/rt5/var/data/RT-Shredder
       - /etc/localtime:/etc/localtime:ro
