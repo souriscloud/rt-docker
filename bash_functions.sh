@@ -50,6 +50,7 @@ function fix_file_perms() {
 
   chmod 0777 ./cron
   chmod 0644 ./crontab
+  chmod +x ./crontab
   chmod 0700 ./gpg
   chmod 0700 ./smime
   chmod 0700 ./shredder
