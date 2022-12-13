@@ -159,8 +159,8 @@ RUN wget -O /openssl.tar.gz https://www.openssl.org/source/openssl-1.1.1l.tar.gz
   && echo '#!/bin/sh' > /etc/profile.d/openssl.sh \
   && echo 'export PATH=/opt/openssl/bin:${PATH}' >> /etc/profile.d/openssl.sh \
   && echo 'export LD_LIBRARY_PATH=/opt/openssl/lib:${LD_LIBRARY_PATH}' >> /etc/profile.d/openssl.sh \
-  && chmod +x /etc/profile.d/openssl.sh \
-  && source /etc/profile.d/openssl.sh
+  && chmod +x /etc/profile.d/openssl.sh
+  # && source /etc/profile.d/openssl.sh
 
 # update PATH
 ENV PATH="${PATH}:/opt/rt5/sbin:/opt/rt5/bin"
