@@ -32,7 +32,7 @@ services:
     user: root
     # this will run the busybox crond
     # command: [ "cron", "-f", "-l", "2" ]
-    command: [ "cat" ]
+    command: [ "tail", "-f", "/dev/null" ]
     # no need for tini here
     entrypoint: ""
     depends_on:
