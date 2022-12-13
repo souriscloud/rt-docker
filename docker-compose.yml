@@ -30,10 +30,9 @@ services:
     restart: unless-stopped
     # the cron daemon needs to run as root
     user: root
-    # this will run the busybox crond
-    # command: [ "cron", "-f", "-l", "2" ]
-    command: [ "tail", "-f", "/dev/null" ]
-    # no need for tini here
+    command: [ "cron", "-f", "-l", "2" ]
+    # command: [ "tail", "-f", "/dev/null" ]
+    # no need for init here
     entrypoint: ""
     depends_on:
       - rt
