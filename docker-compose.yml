@@ -34,7 +34,7 @@ services:
     command: [ "cron", "&&", "tail", "-f", "/var/log/cron.log" ]
     # command: [ "tail", "-f", "/dev/null" ]
     # no need for init here
-    entrypoint: ""
+    entrypoint: "touch /etc/crontab /etc/cron.*/*"
     depends_on:
       - rt
       - db
