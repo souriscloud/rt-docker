@@ -18,6 +18,14 @@ RUN wget -O /msmtp.tar.xz -nv https://marlam.de/msmtp/releases/msmtp-${MSMTP_VER
 
 #############################################################################
 
+FROM debian:bullseye-slim as ossl-builder
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get update \
+  && apt-get -q -y install --no-install-recommends \
+  ca-certificates \
+  build-essential automake libtool gettext texinfo pkg-config
+
+
 FROM perl:5.36.0 as builder
 
 ENV RT="rt-5.0.3"
@@ -127,12 +135,32 @@ RUN mkdir -p /opt/rt5/var/data/RT-Shredder \
 
 # add dev/maintainer tools
 RUN apt update && apt install -q -y vim nano cron
-COPY crontab /etc/cron.d/rt
-RUN chmod 0644 /etc/cron.d/rt
+# COPY crontab /etc/cron.d/rt
+# RUN chmod 0644 /etc/cron.d/rt
 # RUN chmod +x /etc/cron.d/crontab
 # RUN crontab /etc/cron.d/crontab
-RUN touch /var/log/cron.log
+# RUN touch /var/log/cron.log
 # RUN touch /etc/crontab /etc/cron.*/*
+
+# openssl for getmail
+RUN mkdir -p /opt/openssl/ssl
+RUN ln -s /etc/ssl/certs /opt/openssl/ssl/certs
+RUN wget -O /openssl.tar.gz https://www.openssl.org/source/openssl-1.1.1l.tar.gz \
+  && tar -zxf /openssl.tar.gz --directory /opt/openssl \
+  && cd /opt/openssl/openssl-1.1.1l \
+  && ./config --prefix=/opt/openssl --openssldir=/opt/openssl/ssl \
+  && make \
+  && make test \
+  && make install \
+  && mv /usr/bin/openssl /usr/bin/openssl-1.1.1g \
+  && ln -s /usr/local/bin/openssl /usr/bin/openssl \
+  && ldconfig \
+  && touch /etc/profile.d/openssl.sh \
+  && echo '#!/bin/sh' > /etc/profile.d/openssl.sh \
+  && echo 'export PATH=/opt/openssl/bin:${PATH}' >> /etc/profile.d/openssl.sh \
+  && echo 'export LD_LIBRARY_PATH=/opt/openssl/lib:${LD_LIBRARY_PATH}' >> /etc/profile.d/openssl.sh \
+  && chmod +x /etc/profile.d/openssl.sh \
+  && source /etc/profile.d/openssl.sh
 
 # update PATH
 ENV PATH="${PATH}:/opt/rt5/sbin:/opt/rt5/bin"
