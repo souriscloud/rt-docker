@@ -139,7 +139,7 @@ RUN apt update && apt install -q -y vim nano cron gcc build-essential ca-certifi
 # RUN chmod 0644 /etc/cron.d/rt
 # RUN chmod +x /etc/cron.d/crontab
 # RUN crontab /etc/cron.d/crontab
-# RUN touch /var/log/cron.log
+RUN touch /var/log/cron.log
 # RUN touch /etc/crontab /etc/cron.*/*
 
 # openssl for getmail
