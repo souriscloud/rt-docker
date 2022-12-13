@@ -6,6 +6,9 @@ services:
       context: .
     image: valuo/request-tracker:latest
     restart: unless-stopped
+    deploy:
+      labels:
+        - "io.portainer.accesscontrol.teams=innetic,valuo"
     depends_on:
       - db
     volumes:
@@ -28,6 +31,9 @@ services:
       context: .
     image: valuo/request-tracker:latest
     restart: unless-stopped
+    deploy:
+      labels:
+        - "io.portainer.accesscontrol.teams=innetic,valuo"
     # the cron daemon needs to run as root
     user: root
     # command: [ "cron", "-f", "-l", "2" ]
