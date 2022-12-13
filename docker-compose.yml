@@ -46,8 +46,8 @@ services:
       - ./getmail/getmailrc:/getmail/getmailrc:ro
       - ./gpg/:/opt/rt5/var/data/gpg
       - ./smime/:/opt/rt5/var/data/smime
-      - ./crontab:/var/spool/cron/crontabs/rt:ro
-      - ./cron/:/cron
+      - ./crontab:/var/spool/cron/crontabs/rt:rw
+      - ./cron/:/cron:rw
       - ./shredder/:/opt/rt5/var/data/RT-Shredder
       - /etc/localtime:/etc/localtime:ro
     # make the host available inside the image

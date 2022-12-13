@@ -125,6 +125,9 @@ RUN mkdir -p /opt/rt5/var/data/smime \
 RUN mkdir -p /opt/rt5/var/data/RT-Shredder \
   && chown rt:rt /opt/rt5/var/data/RT-Shredder
 
+# add dev/maintainer tools
+RUN apt update && apt install -q -y vim nano
+
 # update PATH
 ENV PATH="${PATH}:/opt/rt5/sbin:/opt/rt5/bin"
 
