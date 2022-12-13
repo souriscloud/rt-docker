@@ -31,7 +31,7 @@ services:
     # the cron daemon needs to run as root
     user: root
     # this will run the busybox crond
-    command: [ "cron", "-f", "-l", "0" ]
+    command: [ "cron", "-f", "-l", "2" ]
     # no need for tini here
     entrypoint: ""
     depends_on:

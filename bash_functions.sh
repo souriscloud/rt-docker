@@ -46,8 +46,10 @@ function fix_file_perms() {
   chown -R 1000:1000 ./shredder
 
   chown -R 1001:1001 ./db_data
+  chown -R 1001:1001 ./crontab
 
   chmod 0777 ./cron
+  chmod 0644 ./crontab
   chmod 0700 ./gpg
   chmod 0700 ./smime
   chmod 0700 ./shredder
