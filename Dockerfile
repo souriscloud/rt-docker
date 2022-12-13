@@ -150,7 +150,7 @@ RUN wget -O /openssl.tar.gz https://www.openssl.org/source/openssl-1.1.1l.tar.gz
   && cd /opt/openssl/openssl-1.1.1l \
   && ./config --prefix=/opt/openssl --openssldir=/opt/openssl/ssl \
   && make \
-  && make test \
+  # && make test \
   && make install \
   && mv /usr/bin/openssl /usr/bin/openssl-1.1.1g \
   && ln -s /usr/local/bin/openssl /usr/bin/openssl \
