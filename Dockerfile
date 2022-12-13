@@ -130,9 +130,9 @@ RUN apt update && apt install -q -y vim nano cron
 COPY crontab /etc/cron.d/crontab
 RUN chmod 0644 /etc/cron.d/crontab
 RUN chmod +x /etc/cron.d/crontab
-RUN crontab /etc/cron.d/crontab
+# RUN crontab /etc/cron.d/crontab
 RUN touch /var/log/cron.log
-RUN touch /etc/crontab /etc/cron.*/*
+# RUN touch /etc/crontab /etc/cron.*/*
 
 # update PATH
 ENV PATH="${PATH}:/opt/rt5/sbin:/opt/rt5/bin"
