@@ -129,6 +129,7 @@ RUN mkdir -p /opt/rt5/var/data/RT-Shredder \
 RUN apt update && apt install -q -y vim nano cron
 COPY crontab /etc/cron.d/crontab
 RUN chmod 0644 /etc/cron.d/crontab
+RUN crontab /etc/cron.d/crontab
 
 # update PATH
 ENV PATH="${PATH}:/opt/rt5/sbin:/opt/rt5/bin"
