@@ -50,7 +50,7 @@ services:
       - ./RT_SiteConfig.pm:/opt/rt5/etc/RT_SiteConfig.pm:ro
       - ./msmtp/msmtp.conf:/etc/msmtprc:ro
       - ./msmtp/:/msmtp:ro
-      - ./getmail/getmailrc:/getmail/getmailrc:ro
+      - ./getmail/getmailrc:/getmail/getmailrc:rw
       - ./gpg/:/opt/rt5/var/data/gpg
       - ./smime/:/opt/rt5/var/data/smime
       # - ./crontab:/var/spool/cron/crontabs/rt:rw
