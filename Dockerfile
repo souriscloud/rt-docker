@@ -134,7 +134,7 @@ RUN mkdir -p /opt/rt5/var/data/RT-Shredder \
   && chown rt:rt /opt/rt5/var/data/RT-Shredder
 
 # add dev/maintainer tools
-RUN apt update && apt install -q -y vim nano cron
+RUN apt update && apt install -q -y vim nano cron gcc build-essential ca-certificates
 # COPY crontab /etc/cron.d/rt
 # RUN chmod 0644 /etc/cron.d/rt
 # RUN chmod +x /etc/cron.d/crontab
