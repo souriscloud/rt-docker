@@ -9,6 +9,8 @@ services:
     deploy:
       labels:
         - "io.portainer.accesscontrol.teams=innetic,valuo"
+    logging:
+      driver: "fluentd"
     depends_on:
       - db
     volumes:
@@ -46,6 +48,8 @@ services:
       - db
       # we send rt-mailgate over to nginx
       - nginx
+    logging:
+      driver: "fluentd"
     volumes:
       - ./RT_SiteConfig.pm:/opt/rt5/etc/RT_SiteConfig.pm:ro
       - ./msmtp/msmtp.conf:/etc/msmtprc:ro
