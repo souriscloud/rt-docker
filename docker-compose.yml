@@ -10,7 +10,7 @@ services:
       labels:
         - "io.portainer.accesscontrol.teams=innetic,valuo"
     logging:
-      driver: "fluentd"
+      driver: "local"
     depends_on:
       - db
     volumes:
@@ -49,7 +49,7 @@ services:
       # we send rt-mailgate over to nginx
       - nginx
     logging:
-      driver: "fluentd"
+      driver: "local"
     volumes:
       - ./RT_SiteConfig.pm:/opt/rt5/etc/RT_SiteConfig.pm:ro
       - ./msmtp/msmtp.conf:/etc/msmtprc:ro
